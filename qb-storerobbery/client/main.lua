@@ -115,7 +115,7 @@ CreateThread(function()
                         if not Config.Safes[safe].robbed then
                             DrawText3Ds(Config.Safes[safe][1].xyz, Lang:t("text.try_combination"))
                             if IsControlJustPressed(0, 38) then
-                                QBCore.Functions.TriggerCallback('qb-storerobbery:checkPoliceCount', function(Cops)
+                                QBCore.Functions.TriggerCallback('qb-storerobbery:server:checkPoliceCount', function(Cops)
                                     if Cops then
                                         currentSafe = safe
                                         if math.random(1, 100) <= 65 and not IsWearingHandshoes() then
