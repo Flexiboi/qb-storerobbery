@@ -115,8 +115,8 @@ CreateThread(function()
                         if not Config.Safes[safe].robbed then
                             DrawText3Ds(Config.Safes[safe][1].xyz, Lang:t("text.try_combination"))
                             if IsControlJustPressed(0, 38) then
-                                QBCore.Functions.TriggerCallback('djkms-jobtracker:GetJobCount', function(CurrentCops)
-                                    if CurrentCops >= QBCore.Shared.IllegalActions["storerobbery"].minimum then
+                                QBCore.Functions.TriggerCallback('qb-storerobbery:checkPoliceCount', function(Cops)
+                                    if Cops then
                                         currentSafe = safe
                                         if math.random(1, 100) <= 65 and not IsWearingHandshoes() then
                                             TriggerServerEvent("evidence:server:CreateFingerDrop", pos)
@@ -150,9 +150,9 @@ CreateThread(function()
                                             copsCalled = true
                                         end
                                     else
-                                        QBCore.Functions.Notify(Lang:t("error.minimum_store_robbery_police", { MinimumStoreRobberyPolice = QBCore.Shared.IllegalActions["storerobbery"].minimum}), "error")
+                                        QBCore.Functions.Notify(Lang:t("error.minimum_store_robbery_police", { MinimumStoreRobberyPolice = Config.MinimumStoreRobberyPolice}), "error")
                                     end
-                                end, "police")
+                                end)
                             end
                         else
                             DrawText3Ds(Config.Safes[safe][1].xyz, Lang:t("text.safe_opened"))
@@ -465,7 +465,7 @@ RegisterNetEvent('lockpicks:UseLockpick', function(isAdvanced)
                     end
 
                 else
-                    QBCore.Functions.Notify(Lang:t("error.minimum_store_robbery_police", { MinimumStoreRobberyPolice = QBCore.Shared.IllegalActions["storerobbery"].minimum}), "error")
+                    QBCore.Functions.Notify(Lang:t("error.minimum_store_robbery_police", { MinimumStoreRobberyPolice = Config.MinimumStoreRobberyPolice}), "error")
                 end
             end, "police")
         end
@@ -490,7 +490,7 @@ RegisterNetEvent('qb-storerobbery:StealReg', function(ent)
                         inRegRange = true
                         cutwires(k, ent)
                     else
-                        QBCore.Functions.Notify(Lang:t("error.minimum_store_robbery_police", { MinimumStoreRobberyPolice = QBCore.Shared.IllegalActions["storerobbery"].minimum}), "error")
+                        QBCore.Functions.Notify(Lang:t("error.minimum_store_robbery_police", { MinimumStoreRobberyPolice = Config.MinimumStoreRobberyPolice}), "error")
                     end
                 end, "police")
             end

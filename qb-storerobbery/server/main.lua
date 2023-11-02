@@ -34,6 +34,25 @@ CreateThread(function()
     end
 end)
 
+QBCore.Functions.CreateCallback('qb-storerobbery:checkPoliceCount', function(source, cb)
+    local src = source
+    local players = QBCore.Functions.GetPlayers()
+    local policeCount = 0
+
+    for i = 1, #players do
+        local player = QBCore.Functions.GetPlayer(players[i])
+        if player.PlayerData.job.name == 'police' and player.PlayerData.job.onduty then
+            policeCount = policeCount + 1
+        end
+    end
+
+    if policeCount >= Config.MinimumStoreRobberyPolice then
+        cb(true)
+    else
+        cb(false)
+    end
+end)
+
 RegisterNetEvent('qb-storerobbery:server:takeMoney', function(register, isDone)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
