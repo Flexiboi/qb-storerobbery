@@ -34,7 +34,7 @@ CreateThread(function()
     end
 end)
 
-QBCore.Functions.CreateCallback('qb-storerobbery:checkPoliceCount', function(source, cb)
+QBCore.Functions.CreateCallback('qb-storerobbery:server:checkPoliceCount', function(source, cb)
     local src = source
     local players = QBCore.Functions.GetPlayers()
     local policeCount = 0
