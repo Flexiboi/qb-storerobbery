@@ -479,8 +479,8 @@ RegisterNetEvent('qb-storerobbery:StealReg', function(ent)
             local pos = GetEntityCoords(ped)
             local dist = #(pos - Config.Registers[k][1].xyz)
             if dist <= 2 and not Config.Registers[k].stolen then
-                QBCore.Functions.TriggerCallback('djkms-jobtracker:GetJobCount', function(CurrentCops)
-                    if CurrentCops >= QBCore.Shared.IllegalActions["storerobbery"].minimum then
+                QBCore.Functions.TriggerCallback('qb-storerobbery:server:checkPoliceCount', function(Cops)
+                    if Cops then
                         if math.random(0,100) <= 50 then
                             currentwire = 'red'
                         else
