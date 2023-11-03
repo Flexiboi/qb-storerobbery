@@ -422,8 +422,8 @@ RegisterNetEvent('lockpicks:UseLockpick', function(isAdvanced)
         local pos = GetEntityCoords(ped)
         local dist = #(pos - Config.Registers[k][1].xyz)
         if dist <= 1 and not Config.Registers[k].robbed and not Config.Registers[k].stolen then
-            QBCore.Functions.TriggerCallback('djkms-jobtracker:GetJobCount', function(CurrentCops)
-                if CurrentCops >= QBCore.Shared.IllegalActions["storerobbery"].minimum then
+            QBCore.Functions.TriggerCallback('qb-storerobbery:server:checkPoliceCount', function(Cops)
+                if Cops then
                     if usingAdvanced then
                         lockpick(true)
                         currentRegister = k
@@ -467,7 +467,7 @@ RegisterNetEvent('lockpicks:UseLockpick', function(isAdvanced)
                 else
                     QBCore.Functions.Notify(Lang:t("error.minimum_store_robbery_police", { MinimumStoreRobberyPolice = Config.MinimumStoreRobberyPolice}), "error")
                 end
-            end, "police")
+            end)
         end
     end
 end)
@@ -492,7 +492,7 @@ RegisterNetEvent('qb-storerobbery:StealReg', function(ent)
                     else
                         QBCore.Functions.Notify(Lang:t("error.minimum_store_robbery_police", { MinimumStoreRobberyPolice = Config.MinimumStoreRobberyPolice}), "error")
                     end
-                end, "police")
+                end)
             end
         end
     else
