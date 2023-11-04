@@ -380,7 +380,7 @@ function reset() {
 
 function outOfPins() {
     gameOver = true;
-    $.post('https://flex-storerobbery/fail');
+    $.post('https://qb-storerobbery/fail');
     setTimeout(function(){
         reset()
     }, 250)
@@ -388,7 +388,7 @@ function outOfPins() {
 
 function unlock() {
     gameOver = true;
-    $.post('https://flex-storerobbery/success');
+    $.post('https://qb-storerobbery/success');
     solveDeg = (Math.random() * 180) - 90
     solvePadding = 4
     maxDistFromSolve = 45
